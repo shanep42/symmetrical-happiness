@@ -1,0 +1,23 @@
+{
+  "name": "symmetrical-happiness",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shanep42/symmetrical-happiness.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shanep42/symmetrical-happiness/issues"
+  },
+  "homepage": "https://github.com/shanep42/symmetrical-happiness#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
