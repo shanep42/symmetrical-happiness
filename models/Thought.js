@@ -1,4 +1,32 @@
-const { Schema, model } = require('mongoose');
+const { Schema, model, Types } = require('mongoose');
+
+const reactionSchema = new Schema(
+    {
+        reactionId: {
+            type: Schema.Types.ObjectId,
+            default: new Types.ObjectId()
+        },
+        reactionBody: {
+            tpye: String,
+            required: true,
+            maxlength: 280
+        },
+        username: {
+            type: String,
+            required: true
+        },
+        createdAt: {
+            type: Date,
+            default: Date.now,
+            // TODO: Use a getter method to format the timestamp on query
+        }
+    },
+    {
+        toJSON: {
+            getters: true
+        }
+    }
+);
 
 const thoughtSchema = new Schema(
     {
@@ -16,9 +44,13 @@ const thoughtSchema = new Schema(
             type: String,
             required: true,
         },
-        reactions: {
+        reactions: [
+            {
+                
+            }
+        ]
             //TODO: Array of nested documents created with the reactionSchema
-        }
+        
     },
     {
         toJSON: {
