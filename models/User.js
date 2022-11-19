@@ -12,13 +12,17 @@ const userSchema = new Schema (
             type: String,
             required: true,
             unique: true,
-            //TODO: Validate email address
+            match: [/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/]
         },
         thoughts: {
-            //TODO: Array of _id values referencing the Thought model
+            // Array of _id values referencing the Thought model
+            type: Schema.Types.ObjectId,
+            ref: 'Thought'
         },
         friends: {
             //TODO: Array of _id values referencing the User model (self-reference)
+            type: Schema.Types.ObjectId,
+            ref: 'User'
         }
     },
     {
