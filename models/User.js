@@ -1,6 +1,6 @@
 const { Schema, Types, model } = require('mongoose');
 
-const userSchema = new Schema (
+const userSchema = new Schema(
     {
         username: {
             type: String,
@@ -20,7 +20,7 @@ const userSchema = new Schema (
             ref: 'Thought'
         },
         friends: {
-            //TODO: Array of _id values referencing the User model (self-reference)
+            //Array of _id values referencing the User model (self-reference)
             type: Schema.Types.ObjectId,
             ref: 'User'
         }
