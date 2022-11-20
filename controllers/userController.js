@@ -20,7 +20,7 @@ module.exports = {
                 res.json(user)
             })
             .catch((err) => res.status(500).json(err))
-        //TODO: populate thought and friend data
+        //TODO: populate thought and friend data - Not sure how to start that
     },
 
     // POST api/users
@@ -43,10 +43,11 @@ module.exports = {
             .then((user) => {
                 if (!user) {
                     res.status(404).json({ message: "No user with this ID!" })
+                } else {
+                    res.json(user)
                 }
-                res.json(user)
-                    .catch((err) => res.status(500).json(err));
             })
+            .catch((err) => res.status(500).json(err));
     },
 
     // DELETE api/user/:userId
