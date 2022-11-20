@@ -54,5 +54,39 @@ module.exports = {
                 res.json(thought)
             })
             .catch((err) => res.status(500).json(err))
+    },
+
+    // POST /api/thoughts/:thoughtId/reactions
+    addReaction(req, res) {
+        Thought.findOneAndUpdate(
+            { _id: req.params.thoughtId },
+            { $addToSet: { reactions: req.params.thoughtId } },
+            { new: true, runValidators: true }
+        )
+            .then((thought) => {
+                if (!thought) {
+                    res.status(404).json({ message: "No thought with this ID!" })
+                } else {
+                    res.json(thought)
+                }
+            })
+            .catch((err) => res.status(500).json(err))
+    },
+
+    // DELETE /api/thoughts/:thoughtId/reactions/:reactionId
+    deleteReaction(req, res) {
+        Thought.findOneAndUpdate(
+            { _id: req.params.thoughtId },
+            { $pull: { friends: req.params.reactionId } },
+            { new: true }
+        )
+            .then((thought) => {
+                if (!thought) {
+                    res.status(404).json({ messsage: 'No thought with this ID!' })
+                } else {
+                    res.json(thought)
+                }
+            })
+            .catch((err) => res.status(500).json(err))
     }
 }
