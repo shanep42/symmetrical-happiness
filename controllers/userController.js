@@ -89,7 +89,7 @@ module.exports = {
             .catch((err) => res.status(500).json(err))
     },
 
-    // /api/user/:userId/friends/:friendId
+    // DELETE /api/user/:userId/friends/:friendId
     deleteFriend(req, res) {
         User.findOneAndUpdate(
             { _id: req.params.userId },
