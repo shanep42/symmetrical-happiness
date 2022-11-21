@@ -25,10 +25,10 @@ module.exports = {
     createThought(req, res) {
         Thought.create(req.body)
             //TODO: Attach thought to user
-            .then(({ _id }) => {
-                User.findOneAndUpdate(
+            .then((thought) => {
+                return User.findOneAndUpdate(
                     { _id: req.body.userId },
-                    { $addToSet: { thoughts: _id } },
+                    { $addToSet: { thoughts: thought._id } },
                     { new: true }
                 );
             })

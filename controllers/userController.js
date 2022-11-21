@@ -75,7 +75,7 @@ module.exports = {
         //TODO (BONUS): Remove user's thoughts when deleted
     },
 
-    // /api/users/:userId/friends/:friendId
+    // POST /api/users/:userId/friends/:friendId
     addFriend(req, res) {
         User.findOneAndUpdate(
             { _id: req.params.userId },
