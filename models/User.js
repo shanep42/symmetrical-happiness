@@ -31,7 +31,16 @@ const userSchema = new Schema(
         },
         id: false,
     }
-)
+);
+// TODO: Why does this cause a 500 error on Get All Users?
+// userSchema.virtual('friendCount').get(function () {
+//     return this.friends.length;
+// });
+
+// TEST
+// userSchema.virtual('nameLength').get(function () {
+//     return this.username.length;
+// })
 
 const User = model('user', userSchema);
 

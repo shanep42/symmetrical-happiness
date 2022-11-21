@@ -11,14 +11,17 @@ module.exports = {
     // GET api/users/:userId
     getSingleUser(req, res) {
         User.findOne({ _id: req.params.userId })
-            .populate({
-                path: 'thoughts',
-                select: '-__v'
-            })
-            .populate({
-                path: 'friends',
-                select: '-__v'
-            })
+            .populate('thoughts')
+            // .populate({
+            //     // The path should be "thought", I think, but that 500s while "thoughts" goes through, but does not populate
+            //     path: 'thoughts',
+            //     select: '-__v'
+            // })
+            // TODO: Why does this break it, if uncommented?
+            // .populate({
+            //     path: 'friends',
+            //     select: '-__v'
+            // })
             .select('-__v')
             .then((user) => {
                 if (!user) {

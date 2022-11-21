@@ -1,4 +1,4 @@
-const { Thought } = require('../models');
+const { Thought, User } = require('../models');
 
 module.exports = {
     // GET /api/thoughts
@@ -24,7 +24,21 @@ module.exports = {
     // POST api/thoughts
     createThought(req, res) {
         Thought.create(req.body)
-            .then((thought) => res.json(thought))
+            //TODO: Attach thought to user
+            .then(({ _id }) => {
+                User.findOneAndUpdate(
+                    { _id: body.userId },
+                    { $addToSet: { thoughts: _id } },
+                    { new: true }
+                );
+            })
+            .then((user) => {
+                if (!user) {
+                    res.status(404).json({ message: 'No user with this ID!' })
+                } else {
+                    res.json(user)
+                }
+            })
             .catch((err) => res.status(500).json(err))
     },
 
