@@ -21,13 +21,13 @@ module.exports = {
             .catch((err) => res.status(500).json(err))
     },
 
-    // POST api/thoughts
+    // POST api/users/:userId/thoughts
     createThought(req, res) {
         Thought.create(req.body)
             //TODO: Attach thought to user
             .then(({ _id }) => {
                 User.findOneAndUpdate(
-                    { _id: body.userId },
+                    { _id: req.body.userId },
                     { $addToSet: { thoughts: _id } },
                     { new: true }
                 );
@@ -41,6 +41,7 @@ module.exports = {
             })
             .catch((err) => res.status(500).json(err))
     },
+
 
     // PUT api/thoughts/:thoughtId
     updateThought(req, res) {
