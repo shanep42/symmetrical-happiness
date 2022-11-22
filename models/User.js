@@ -1,4 +1,4 @@
-const { Schema, Types, model } = require('mongoose');
+const { Schema, model } = require('mongoose');
 
 const userSchema = new Schema(
     {
@@ -14,16 +14,16 @@ const userSchema = new Schema(
             unique: true,
             match: [/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/]
         },
-        thoughts: {
+        thoughts: [{
             // Array of _id values referencing the Thought model
             type: Schema.Types.ObjectId,
             ref: 'Thought'
-        },
-        friends: {
+        }],
+        friends: [{
             //Array of _id values referencing the User model (self-reference)
             type: Schema.Types.ObjectId,
             ref: 'User'
-        }
+        }]
     },
     {
         toJSON: {
@@ -33,9 +33,9 @@ const userSchema = new Schema(
     }
 );
 // TODO: Why does this cause a 500 error on Get All Users?
-// userSchema.virtual('friendCount').get(function () {
-//     return this.friends.length;
-// });
+userSchema.virtual('friendCount').get(function () {
+    return this.friends.length;
+});
 
 // TEST
 // userSchema.virtual('nameLength').get(function () {

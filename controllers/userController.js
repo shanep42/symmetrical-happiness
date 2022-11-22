@@ -4,26 +4,24 @@ module.exports = {
     // GET /api/users
     getAllUsers(req, res) {
         User.find()
+            // .populate('thoughts')
+            // .select('-__v')
             .then((users) => res.json(users))
             .catch((err) => res.status(500).json(err))
     },
 
     // GET api/users/:userId
     getSingleUser(req, res) {
+        // console.log(req.params.userId)
         User.findOne({ _id: req.params.userId })
-            .populate('thoughts')
-            // .populate({
-            //     // The path should be "thought", I think, but that 500s while "thoughts" goes through, but does not populate
-            //     path: 'thoughts',
-            //     select: '-__v'
-            // })
+            // TODO: Get population working
             // TODO: Why does this break it, if uncommented?
-            // .populate({
-            //     path: 'friends',
-            //     select: '-__v'
-            // })
             .select('-__v')
+            // .populate("friends")
+            // .populate("thoughts")
+            // .populate({ path: 'friends', select: '-__v' })
             .then((user) => {
+                console.log(user)
                 if (!user) {
                     res.status(404).json({ messsage: 'No user found with this ID' });
                     return;
@@ -31,7 +29,6 @@ module.exports = {
                 res.json(user)
             })
             .catch((err) => res.status(500).json(err))
-        //TODO: populate thought and friend data - Not sure how to start that
     },
 
     // POST api/users
