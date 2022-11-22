@@ -86,25 +86,6 @@ module.exports = {
 
     // POST /api/thoughts/:thoughtId/reactions
     addReaction(req, res) {
-        // The below will not work, because Reactions are not a model, and you can't just use .create(). I think I need to review adding it as an embedded subdocument of the relevant Thought.
-
-        // Reaction.create(req.body)
-        //     .then((reaction) => {
-        //         return Thought.findOneAndUpdate(
-        //             { _id: req.params.thoughtId },
-        //             { $push: { reactions: reaction._id } },
-        //             { new: true }
-        //         );
-        //     })
-        //     .then((thought) => {
-        //         if (!thought) {
-        //             res.status(404).json({ message: 'No thought with this ID!' })
-        //         } else {
-        //             res.json(user)
-        //         }
-        //     })
-        //     .catch((err) => res.status(500).json(err))
-
         Thought.findOneAndUpdate(
             { _id: req.params.thoughtId },
             { $push: { reactions: req.body } },
