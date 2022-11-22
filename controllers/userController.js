@@ -11,14 +11,10 @@ module.exports = {
 
     // GET api/users/:userId
     getSingleUser(req, res) {
-        // console.log(req.params.userId)
         User.findOne({ _id: req.params.userId })
-            // TODO: Get population working
-            // TODO: Why does this break it, if uncommented?
             .select('-__v')
             .populate("friends")
             .populate("thoughts")
-            // .populate({ path: 'friends', select: '-__v' })
             .then((user) => {
                 console.log(user)
                 if (!user) {
