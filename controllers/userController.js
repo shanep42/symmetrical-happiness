@@ -4,8 +4,7 @@ module.exports = {
     // GET /api/users
     getAllUsers(req, res) {
         User.find()
-            // .populate('thoughts')
-            // .select('-__v')
+            .select('-__v')
             .then((users) => res.json(users))
             .catch((err) => res.status(500).json(err))
     },
@@ -17,8 +16,8 @@ module.exports = {
             // TODO: Get population working
             // TODO: Why does this break it, if uncommented?
             .select('-__v')
-            // .populate("friends")
-            // .populate("thoughts")
+            .populate("friends")
+            .populate("thoughts")
             // .populate({ path: 'friends', select: '-__v' })
             .then((user) => {
                 console.log(user)
@@ -28,7 +27,11 @@ module.exports = {
                 }
                 res.json(user)
             })
-            .catch((err) => res.status(500).json(err))
+
+            .catch((err) => {
+                console.log(err)
+                res.status(500).json(err)
+            })
     },
 
     // POST api/users
