@@ -14,7 +14,7 @@ const thoughtSchema = new Schema(
             type: Date,
             default: Date.now,
             //TODO: Getter method to format the timestamp on query
-            // get: format(Date.now, 'MMMM dd, yyyy')
+            get: createTime => format(new Date(), 'MMMM dd, yyyy')
         },
         username: {
             type: String,
