@@ -114,7 +114,7 @@ module.exports = {
     deleteReaction(req, res) {
         Thought.findOneAndUpdate(
             { _id: req.params.thoughtId },
-            { $pull: { friends: req.params.reactionId } },
+            { $pull: { reaction: { reactionID: req.params.reactionId } } },
             { new: true }
         )
             .then((thought) => {
