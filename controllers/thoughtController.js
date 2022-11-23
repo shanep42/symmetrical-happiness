@@ -6,7 +6,10 @@ module.exports = {
     getAllThoughts(req, res) {
         Thought.find()
             .then((thoughts) => res.json(thoughts))
-            .catch((err) => res.status(500).json(err))
+            .catch((err) => {
+                console.log(err)
+                res.status(500).json(err)
+            })
     },
 
     // GET /api/thoughts/:thoughtId
@@ -73,16 +76,21 @@ module.exports = {
                         { $pull: { videos: req.params.thoughtId } },
                         { new: true }
                     )
+                        .then((user) => {
+                            console.log("USER:", user)
+                            if (!user) {
+                                res.status(404).json({ message: 'Unowned Thought Deleted' })
+                            } else {
+                                res.json({ message: 'Thought successfully deleted' })
+                            }
+                        })
                 }
+            }
+            )
+            .catch((err) => {
+                console.log(err)
+                res.status(500).json(err)
             })
-            .then((user) => {
-                if (!user) {
-                    res.status(404).json({ message: 'No user with this ID!' })
-                } else {
-                    res.json({ message: 'Thought successfully added' })
-                }
-            })
-            .catch((err) => res.status(500).json(err))
     },
 
     // POST /api/thoughts/:thoughtId/reactions
