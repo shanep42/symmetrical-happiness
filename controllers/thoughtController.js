@@ -1,5 +1,6 @@
 const { Thought, User, Reaction } = require('../models');
 
+
 module.exports = {
     // GET /api/thoughts
     getAllThoughts(req, res) {
