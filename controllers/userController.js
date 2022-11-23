@@ -1,4 +1,4 @@
-const { User } = require('../models');
+const { User, Thought } = require('../models');
 
 module.exports = {
     // GET /api/users
@@ -64,11 +64,12 @@ module.exports = {
                 if (!user) {
                     res.status(404).json({ message: "No user with this ID!" })
                 } else {
-                    res.json(user)
+                    Thought.deleteMany({ _id: user.thoughts });
                 }
+                res.json(user)
             })
+            //TODO (BONUS): Remove user's thoughts when deleted
             .catch((err) => res.status(500).json(err))
-        //TODO (BONUS): Remove user's thoughts when deleted
     },
 
     // POST /api/users/:userId/friends/:friendId
