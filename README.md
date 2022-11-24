@@ -16,6 +16,9 @@ This is the back-end infrastructure for a basic social netowrk site, allowing th
 ## Installation
 
 The project is currently back-end only, and will require local installation of MongoDB as well as the local files and dependencies. A program like Postman or Insomnia is recommended for testing request routes.
+<br>
+![](./assets/GET_all_users.png)
+![](./assets/GET_single_user.png)
 
 ## Usage
 
@@ -25,14 +28,9 @@ If your database is locally configured and dependencies have been installed, you
 
 Click [here](https://watch.screencastify.com/v/2IhYEc0u9dfaG4wCPEZC) for a video demo.
 
-The images below show some of the app's functionality in Insomnia.
-![](./assets/GET_all_users.png)
-
-
 
 ## Contact
 
-Please feel free to contact me if you need any further information:
 
 - [Email](mailto:shanep42@gmail.com)
 - [Github Profile](https://github.com/shanep42)
