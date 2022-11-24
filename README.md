@@ -20,6 +20,9 @@ The project is currently back-end only, and will require local installation of M
 ![](./assets/GET_all_users.png)
 ![](./assets/GET_single_user.png)
 
+## Github Repository
+View and clone the source code [here](https://github.com/shanep42/symmetrical-happiness)
+
 ## Usage
 
 If your database is locally configured and dependencies have been installed, you can run it from the terminal by running "npm start" or, if you have nodemon installed globally, "npm run dev" to run the server with live-updates.
